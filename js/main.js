@@ -4,7 +4,8 @@
   require.config({
     paths: {
       "kevent": "libs/kevent",
-      "jquery": "libs/jquery"
+      "jquery": "libs/jquery",
+      "loadfile": "libs/loadfile"
     }
   });
 

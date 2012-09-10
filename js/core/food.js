@@ -12,8 +12,23 @@
       }
 
       Food.prototype.spawn = function() {
+        var pt, _i, _len, _ref, _results;
         this.x = ~~(Math.random() * this.map.width);
-        return this.y = ~~(Math.random() * this.map.height);
+        this.y = ~~(Math.random() * this.map.height);
+        if (!this.map.pts) {
+          return;
+        }
+        _ref = this.map.pts;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          pt = _ref[_i];
+          if (pt.x === this.x && pt.y === this.y) {
+            _results.push(this.spawn());
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       };
 
       Food.prototype.draw = function() {

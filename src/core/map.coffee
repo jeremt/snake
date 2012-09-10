@@ -1,11 +1,29 @@
-define ->
+define ["loadfile"], (loadFile) ->
 
 	class Map
 
-		constructor: (@ctx, @cw, type) ->
+		pts: []
+
+		constructor: (@ctx, @cw, type, path) ->
 			@width = @ctx.width / @cw
 			@height = @ctx.height / @cw
 			@type = type ? 'square'
+
+			buff = if path then loadFile(path).split "\n" else []
+			array = []
+			for row in buff
+				array.push row.split ""
+
+			for y, row of array
+				for x of row
+					unless row[x] is " "
+						@pts.push x: ~~x, y: ~~y
+
+			@draw()
+
+		draw: (color) ->
+			for pt in @pts
+				@drawCell pt.x, pt.y, color, 0.5, "square"
 
 		drawCell: (x, y, color, alpha, type) ->
 			@ctx.fillStyle = color ? 'white'

@@ -49,12 +49,16 @@ define ["kevent"], (KEvent) ->
 				return false
 			return true
 
-		hit: ->
+		hit: (pts) ->
 			head = true
 			for node in _body
 				if not head and node.x is _body[0].x and node.y is _body[0].y
 					return true
 				head = false
+			return false unless pts
+			for pt in pts
+				if pt.x is _body[0].x and pt.y is _body[0].y
+					return true
 			return false
 
 		update: ->

@@ -93,8 +93,8 @@
         return true;
       };
 
-      Snake.prototype.hit = function() {
-        var head, node, _i, _len1;
+      Snake.prototype.hit = function(pts) {
+        var head, node, pt, _i, _j, _len1, _len2;
         head = true;
         for (_i = 0, _len1 = _body.length; _i < _len1; _i++) {
           node = _body[_i];
@@ -102,6 +102,15 @@
             return true;
           }
           head = false;
+        }
+        if (!pts) {
+          return false;
+        }
+        for (_j = 0, _len2 = pts.length; _j < _len2; _j++) {
+          pt = pts[_j];
+          if (pt.x === _body[0].x && pt.y === _body[0].y) {
+            return true;
+          }
         }
         return false;
       };
