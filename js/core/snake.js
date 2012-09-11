@@ -55,27 +55,31 @@
         switch (dir) {
           case 'up':
             y = _body[0].y - 1;
-            y = y < 0 ? this.map.height : y;
+            y = y < 0 ? this.map.height - 1 : y;
             tail = {
               x: _body[0].x,
               y: y
             };
             break;
           case 'down':
+            y = _body[0].y + 1;
+            y = y >= this.map.height ? 0 : y;
             tail = {
               x: _body[0].x,
-              y: (_body[0].y + 1) % this.map.height
+              y: y
             };
             break;
           case 'right':
+            x = _body[0].x + 1;
+            x = x >= this.map.width ? 0 : x;
             tail = {
-              x: (_body[0].x + 1) % this.map.width,
+              x: x,
               y: _body[0].y
             };
             break;
           case 'left':
             x = _body[0].x - 1;
-            x = x < 0 ? this.map.width : x;
+            x = x < 0 ? this.map.width - 1 : x;
             tail = {
               x: x,
               y: _body[0].y

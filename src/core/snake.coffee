@@ -29,15 +29,19 @@ define ["kevent"], (KEvent) ->
 			switch dir
 				when 'up'
 					y = _body[0].y - 1
-					y = if y < 0 then @map.height else y
+					y = if y < 0 then @map.height - 1 else y
 					tail = x: _body[0].x, y: y
 				when 'down'
-					tail = x: _body[0].x, y: (_body[0].y + 1) % @map.height
+					y = _body[0].y + 1
+					y = if y >= @map.height then 0 else y
+					tail = x: _body[0].x, y: y
 				when 'right'
-					tail = x: (_body[0].x + 1) % @map.width , y: _body[0].y
+					x = _body[0].x + 1
+					x = if x >= @map.width then 0 else x
+					tail = x: x, y: _body[0].y
 				when 'left'
 					x = _body[0].x - 1
-					x = if x < 0 then @map.width else x
+					x = if x < 0 then @map.width - 1 else x
 					tail = x: x, y: _body[0].y
 
 			_body.unshift tail
