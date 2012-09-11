@@ -1,0 +1,18 @@
+@import url('font.css');
+@import url('reset.css');
+
+body {
+	font-family: 'Codystar', helvetica, sans-serif;
+	background: rgba(0, 0, 0, .98);
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 42px;
+}
+
+canvas {
+	display: block;
+	margin: auto;
+}
